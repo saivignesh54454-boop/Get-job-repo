@@ -1,2 +1,148 @@
 # Get-job-repo
 To get jobs easily 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Search Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .search-box {
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 1rem auto;
+      max-width: 800px;
+      border-radius: 8px;
+      display: flex;
+      gap: 1rem;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .search-box button {
+      padding: 0.6rem 1rem;
+      background: #4a90e2;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .search-box button:hover {
+      background: #357ab7;
+    }
+    .jobs {
+      max-width: 800px;
+      margin: 1rem auto;
+      display: grid;
+      gap: 1rem;
+    }
+    .job {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .job h3 {
+      margin: 0 0 0.3rem;
+    }
+    .job .location {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .job .desc {
+      margin: 0.5rem 0;
+    }
+    .job a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      background: #4a90e2;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .job a:hover {
+      background: #357ab7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job Search Portal</h1>
+    <p>Find your dream job easily</p>
+  </header>
+
+  <div class="search-box">
+    <input type="text" id="keyword" placeholder="Job title, keyword...">
+    <input type="text" id="location" placeholder="Location">
+    <button onclick="searchJobs()">Search</button>
+  </div>
+
+  <div class="jobs" id="jobList">
+    <!-- Job examples -->
+    <div class="job" data-title="Web Developer" data-location="Hyderabad">
+      <h3>Web Developer</h3>
+      <p class="location">Hyderabad</p>
+      <p class="desc">Looking for a skilled frontend developer with React knowledge.</p>
+      <a href="#">Apply Now</a>
+    </div>
+
+    <div class="job" data-title="Software Engineer" data-location="Bangalore">
+      <h3>Software Engineer</h3>
+      <p class="location">Bangalore</p>
+      <p class="desc">Full stack engineer with experience in Python and Django.</p>
+      <a href="#">Apply Now</a>
+    </div>
+
+    <div class="job" data-title="Data Analyst" data-location="Chennai">
+      <h3>Data Analyst</h3>
+      <p class="location">Chennai</p>
+      <p class="desc">Looking for a data analyst with SQL and Power BI skills.</p>
+      <a href="#">Apply Now</a>
+    </div>
+
+    <div class="job" data-title="Network Engineer" data-location="Hyderabad">
+      <h3>Network Engineer</h3>
+      <p class="location">Hyderabad</p>
+      <p class="desc">Responsible for maintaining network systems and security.</p>
+      <a href="#">Apply Now</a>
+    </div>
+  </div>
+
+  <script>
+    function searchJobs() {
+      const keyword = document.getElementById("keyword").value.toLowerCase();
+      const location = document.getElementById("location").value.toLowerCase();
+      const jobs = document.querySelectorAll(".job");
+
+      jobs.forEach(job => {
+        const title = job.dataset.title.toLowerCase();
+        const jobLocation = job.dataset.location.toLowerCase();
+
+        if ((keyword === "" || title.includes(keyword)) &&
+            (location === "" || jobLocation.includes(location))) {
+          job.style.display = "block";
+        } else {
+          job.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
